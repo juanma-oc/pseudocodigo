@@ -49,7 +49,7 @@ Algoritmo adioasdjoasd
 	Escribir  "Introduce palabra a adivinar"
 	Leer palabra
 	pal_oculta <- ocultarPalabra(palabra)
-	Escribir "Â¿Como te llamas?"
+	Escribir "¿Como te llamas?"
 	Leer nombre
 	
 	vida <- 3
