@@ -8,7 +8,6 @@ Funcion carta(a)
 	Escribir "6. Bocadillo de aceite y jamón"
 	Escribir "7. Bocadillo mixto" 
 	Escribir  ""
-	
 FinFuncion
 
 
