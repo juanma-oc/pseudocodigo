@@ -107,8 +107,8 @@ Algoritmo notas
 		Escribir  "Introduce la nota de " nombreAlumn[i]
 		Leer notaAlumn[i]
 	FinPara
-		a <- Verdadero
-	mientras a 
+	continuar <- Verdadero
+	mientras continuar 
 		eleccion <- menu 
 		segun eleccion
 			1: Escribir "La nota media es: ", CalcNotaMedia(notaAlumn,numAlumn)
@@ -118,13 +118,13 @@ Algoritmo notas
 			5: aprob <- TotalNotas(notaAlumn,numAlumn,nombreAlumn)
 			6: alumN <- NotaConcreta(notaAlumn,numAlumn,nombreAlumn)
 			7: alumN <- NotaConcreta(notaAlumn,numAlumn,nombreAlumn);Escribir CambiarNota(notaAlumn,numAlumn,nombreAlumn,alumN)
-			0: a <- Falso
+			0: continuar <- Falso
 		FinSegun	
 		Escribir "¿Quieres hacer algo mas? (0 para salir)"
 		Leer accion
 		
 		si accion == 0 Entonces
-			a <- Falso
+			continuar <- Falso
 		FinSi
 	FinMientras
 FinAlgoritmo
