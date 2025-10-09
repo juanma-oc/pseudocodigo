@@ -28,22 +28,26 @@ Funcion media <- CalcNotaMedia(array,num)
 	media <- suma / num
 FinFuncion
 
-Funcion numMax <- CalcNotaMax(array,num)
+Funcion numMax <- CalcNotaMax(array,num,nombre)
 	numMax <- 0
 	para i <- 1 hasta num
 		si array[i] > numMax
 			numMax <- array[i]
+			alumnMax <- nombre[i]
 		FinSi
 	FinPara
+	Escribir "La nota mas alta es del alumno " alumnMax, " y ha sacado un " numMax
 FinFuncion
 
-Funcion numMin <- CalcNotaMin(array,num)
+Funcion numMin <- CalcNotaMin(array,num,nombre)
 	numMin <- 10
 	para i <- 1 hasta num
 		si array[i] < numMin
 			numMin <- array[i]
+			alumnMin <- nombre[i]
 		FinSi
 	FinPara
+	Escribir "La nota mas baja es del alumno " alumnMin, " y ha sacado un " numMin
 FinFuncion
 
 Funcion aprob <- CalcAprob(array,num)
@@ -55,24 +59,29 @@ Funcion aprob <- CalcAprob(array,num)
 	FinPara
 FinFuncion
 
-Funcion total <- TotalNotas(array,num)
+Funcion total <- TotalNotas(array,num,nombre)
 	para i <- 1 hasta num
-		Escribir "La nota del alumno ", i " ha sido ", array[i]
+		Escribir "La nota del alumno ", nombre[i] " ha sido ", array[i]
 	FinPara	
 FinFuncion
 
-Funcion alumN <- NotaConcreta(array,num)
-	mientras n1 > num o n1 < 1 
-		Escribir "Introduce un numero para revisar su nota" 
-		Leer n1
-		si n1 > num o n1 < 1
-			Escribir  "No existe un alumno asignado a ese numero"
+Funcion alumN <- NotaConcreta(array,num,nombre)
+	i <- 1
+	
+	Escribir "Introduce un numero para revisar su nota" 
+	Leer alu
+	
+	para i <- 1 hasta num
+		si alu == nombre[i]
+			Escribir  "El alumno ", nombre[i] " ha sacado un: ", array[i]
 		FinSi
-	FinMientras
-	Escribir  "El alumno con el numero introducido ha sacado un: " array[n1]
+	FinPara
+	si i > num o alu <> nombre[i]
+		Escribir  "No existe un alumno asignado a ese numero"
+	FinSi
 FinFuncion
 
-Funcion notacamb <- CambiarNota(array,num)
+Funcion notacamb <- CambiarNota(array,num,nombre)
 	mientras n1 > num o n1 < 1 
 		Escribir "Introduce el numero del alumno al cual quieres cambiar la nota"
 		Leer n1
@@ -80,34 +89,39 @@ Funcion notacamb <- CambiarNota(array,num)
 			Escribir  "No existe un alumno asignado a ese numero"
 		FinSi
 	FinMientras
-	Escribir  "El alumno " n1 " tiene un " array[n1]
+	Escribir  "El alumno ", nombre[n1], " tiene un ", array[n1]
 	Escribir  "Introduce la nota que le quieres poner"
 	Leer notaN
 	array[n1] <- notaN
-	Escribir  "La nota se ha introducido, ahora el alumno " n1, " tiene un " array[n1]
+	Escribir  "La nota se ha introducido, ahora el alumno " nombre[n1], " tiene un " array[n1]
 FinFuncion
 
 //---------------------------------------º----------------------------------------
 Algoritmo notas	
 	Escribir  "¿Cuantos alumnos tienes?"
 	Leer numAlumn
+	
 	Dimension notaAlumn[numAlumn]
+	Dimension nombreAlumn[numAlumn]
+	
 	para i <- 1 hasta numAlumn Hacer
-		Escribir  "Introduce la nota " i
+		Escribir  "Escribe el nombre del alumno " i
+		Leer nombreAlumn[i]
+		Escribir  "Introduce la nota de " nombreAlumn[i]
 		Leer notaAlumn[i]
 	FinPara
-	
+
 	a <- Verdadero
 	mientras a 
 		eleccion <- menu 
 		segun eleccion
 			1: Escribir "La nota media es: ", CalcNotaMedia(notaAlumn,numAlumn)
-			2: Escribir "La nota maxima ha sido: ", CalcNotaMax(notaAlumn,numAlumn)
-			3: Escribir "La nota minima ha sido: ", CalcNotaMin(notaAlumn,numAlumn)
+			2: Escribir CalcNotaMax(notaAlumn,numAlumn,nombreAlumn)
+			3: Escribir CalcNotaMin(notaAlumn,numAlumn,nombreAlumn)
 			4: Escribir "El numero de alumnos de aprovados es: ", CalcAprob(notaAlumn,numAlumn)
-			5: Escribir TotalNotas(notaAlumn,numAlumn)
-			6: Escribir NotaConcreta(notaAlumn,numAlumn)
-			7: Escribir CambiarNota(notaAlumn,numAlumn)
+			5: Escribir TotalNotas(notaAlumn,numAlumn,nombreAlumn)
+			6: Escribir NotaConcreta(notaAlumn,numAlumn,nombreAlumn)
+			7: Escribir CambiarNota(notaAlumn,numAlumn,nombreAlumn)
 			0: a <- Falso
 		FinSegun	
 		Escribir "¿Quieres hacer algo mas? (0 para salir)"
